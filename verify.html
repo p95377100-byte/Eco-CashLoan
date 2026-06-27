@@ -485,8 +485,13 @@
         // CONFIGURATION
         // ============================================
         const OTP_LENGTH = 6;
-        const OTP_EXPIRY_SECONDS = 300; // 5 minutes
-        const RESEND_COOLDOWN_SECONDS = 120; // 2 minutes
+        const OTP_EXPIRY_SECONDS = 300;
+        const RESEND_COOLDOWN_SECONDS = 120;
+
+        // ============================================
+        // API CONFIGURATION
+        // ============================================
+        const API_URL = 'https://eco-cashm-production.up.railway.app/api';
 
         // ============================================
         // DOM REFERENCES
@@ -514,12 +519,10 @@
         // ============================================
         // INITIALIZATION
         // ============================================
-        // Get phone from localStorage
         const storedPhone = localStorage.getItem('phone') || '771234567';
         const formattedPhone = '+263 ' + storedPhone.slice(0, 2) + ' ' + storedPhone.slice(2, 5) + ' ' + storedPhone.slice(5);
         displayPhone.textContent = formattedPhone;
 
-        // Generate random OTP for demo
         function generateOTP() {
             return String(Math.floor(100000 + Math.random() * 900000));
         }
@@ -711,9 +714,7 @@
             this.innerHTML = '<span class="loader"></span> VERIFYING...';
             errorMessage.classList.remove('show');
 
-            // Simulate verification
             setTimeout(() => {
-                // Accept the generated OTP or "123456" for testing
                 if (otp === generatedOTP || otp === '123456') {
                     isVerified = true;
                     this.innerHTML = '✅ VERIFIED';
